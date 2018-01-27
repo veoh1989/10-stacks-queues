@@ -43,16 +43,6 @@ describe('Stack Data Structure Module', function () {
       expect(this.stack.top.val).toEqual(1);
       expect(this.stack.pop().val).toEqual(1);
     });
-    // it('should remove the top most node from the stack', () => {
-    //   this.stack.push(1);
-    //   expect(this.stack.top.val).toEqual(1);
-    //   expect(this.stack.pop().val).toEqual(1);
-    // });
-    // it('should remove the top most node from the stack', () => {
-    //   this.stack.push(1);
-    //   expect(this.stack.top.val).toEqual(1);
-    //   expect(this.stack.pop().val).toEqual(1);
-    // });
   });
 
   describe('#peek', () => {
@@ -61,15 +51,5 @@ describe('Stack Data Structure Module', function () {
       this.stack.push(1);
       expect(this.stack.peek().val).toEqual(1);
     });
-    // it('should return the top of the stack', () => {
-    //   expect(this.stack.top).toBeNull();
-    //   this.stack.push(1);
-    //   expect(this.stack.peek().val).toEqual(1);
-    // });
-    // it('should return the top of the stack', () => {
-    //   expect(this.stack.top).toBeNull();
-    //   this.stack.push(1);
-    //   expect(this.stack.peek().val).toEqual(1);
-    // });
   });
 });

@@ -3,31 +3,31 @@
 const Node = require('./node');
 
 module.exports = class {
-  constructor(maxSize=1048) {
-    this.first = null;
-    this.last = null;
-    this.maxSize = maxSize;
+  constructor() {
+    this.first = null; //front
+    this.last = null; //back
+    this.maxSize = 1048;
     this.size = 0;
   }
+
   enqueue(value) {
-    if(this.size === this.maxSize) throw new Error('this is a fucking error!');
+    if (this.size === this.maxSize) throw new Error ('This is an error');
 
-    let node = new Node(value);
+    let node = new Node (value);
 
-    !this.last ? this.first = node : this.last.next = node;
+    this.last ? this.last.next = node : this.first = node;
     this.last = node;
+    this.size++;
 
-    this.size ++;
-
-    return this.last;
+    return this.first;
   }
 
   dequeue() {
     let temp = this.first;
     this.first = this.first.next;
 
-    this.size --;
     temp.next = null;
+    this.size --;
 
     return temp;
   }
