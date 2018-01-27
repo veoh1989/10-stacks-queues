@@ -1,57 +1,50 @@
 'use strict';
 
-const Stack = require('../lib/stack');
+const Queue = require('../lib/queue');
 require('jest');
 
-describe('Stack Data Structure Module', function () {
-  beforeEach(() => this.stack = new Stack());
+describe('Queue Data Structure Module', function () {
+  beforeEach(() => this.queue = new Queue());
 
   describe('default properties', () => {
-    it('should create a new instance of a Stack', () => {
-      expect(this.stack).toBeInstanceOf(Stack);
+    it('should create a new instance of a queue', () => {
+      expect(this.queue).toBeInstanceOf(Queue);
     });
-    it('should have a default val of null assigned to the top property', () => {
-      expect(this.stack.top).toBeNull();
+    it('should have a default value of null assigned to the first property', () => {
+      expect(this.queue.first).toBeNull();
     });
-    it('should have a default val of 0 assigned to the size property', () => {
-      expect(this.stack.size).toEqual(0);
+    it('should have a default value of null assigned to the last property', () => {
+      expect(this.queue.last).toBeNull();
     });
-    it('should have a maxSize property with a default val of 1048', () => {
-      expect(this.stack.maxSize).toEqual(1048);
+    it('should have a default value of 0 assigned to the size property', () => {
+      expect(this.queue.size).toEqual(0);
+    });
+    it('should have a maxSize property with a default value of 1048', () => {
+      expect(this.queue.maxSize).toEqual(1048);
     });
   });
 
   describe('#enqueue', () => {
-    it('should remove the top most node from the stack', () => {
-      this.stack.push(1);
-      expect(this.stack.top.val).toEqual(1);
-      expect(this.stack.pop().val).toEqual(1);
+    it('should have a size of 10', () => {
+      [1, 2, 3, 4, 5, 6, 7, 8].map((x, y) => this.queue.enqueue(~~(Math.random() * y)));
+      expect(this.queue.size).toEqual(8);
     });
-    // it('should remove the top most node from the stack', () => {
-    //   this.stack.push(1);
-    //   expect(this.stack.top.val).toEqual(1);
-    //   expect(this.stack.pop().val).toEqual(1);
-    // });
-    // it('should remove the top most node from the stack', () => {
-    //   this.stack.push(1);
-    //   expect(this.stack.top.val).toEqual(1);
-    //   expect(this.stack.pop().val).toEqual(1);
-    // });
+    it('should add a new node with the value of 1 to the back of the queue', () => {
+      this.queue.enqueue(1);
+      expect(this.queue.last.value).toEqual(1);
+    });
+    it('throw an error when maxSize is met', () => {
+      expect(() => {
+        [...Array(2000)].map((x, y) => this.queue.enqueue(~~(Math.random() * y)));
+      }).toThrow();
+    });
+  });
 
-    describe('#dequeue', () => {
-      it('should have a size of 20', () => {
-        [...Array(20)].map((e, i) => this.stack.push(~~(Math.random() * i)));
-        expect(this.stack.size).toEqual(20);
-      });
-      it('should add a new node with the val of 1 to the top of the stack', () => {
-        this.stack.push(1);
-        expect(this.stack.top.val).toEqual(1);
-      });
-      it('throw an error when maxSize is met', () => {
-        expect(() => {
-          [...Array(1049)].map((e, i) => this.stack.push(~~(Math.random() * i)));
-        }).toThrow();
-      });
+  describe('#dequeue', () => {
+    it('should remove the node from the queue', () => {
+      this.queue.enqueue(10);
+      expect(this.queue.first.value).toEqual(10);
+      expect(this.queue.dequeue().value).toEqual(10);
     });
   });
 });
