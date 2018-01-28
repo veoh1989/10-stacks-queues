@@ -17,9 +17,11 @@ module.exports = class {
 
     this.last ? this.last.next = node : this.first = node;
     this.last = node;
+
     this.size++;
 
     return this.first;
+    //Big-O: O(1)
   }
 
   dequeue() {
@@ -30,5 +32,6 @@ module.exports = class {
     this.size --;
 
     return temp;
+    //Big-O: O(1)
   }
 };
