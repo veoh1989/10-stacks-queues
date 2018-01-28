@@ -52,7 +52,6 @@ In the following example, the user can again pass through '1' to add '1' to the 
   expect(this.stack.peek().value).toEqual(1);
 ```
 
-
 ## Architecture
 Javascript
 Node
